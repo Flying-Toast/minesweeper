@@ -265,6 +265,8 @@ function shuffleArray(a) {
 
 let winAudio = new Audio("/win.ogg");
 function winFeedback() {
+	winAudio.pause();
+	winAudio.currentTime = 0;
 	winAudio.play();
 }
 
