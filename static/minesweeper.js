@@ -110,6 +110,7 @@ class Minefield {
 		this.height = height;
 		this.isFirstMove = true;
 		const area = width * height;
+		this.remainingNonMines = area - numMines;
 
 		let allSquares = [];
 		for (let i = 0; i < numMines; i++) {
@@ -230,6 +231,11 @@ class Minefield {
 
 		if (square.isMine) {
 			square.elt.classList.add("boom-mine");
+			for (let square of this.squares.flat()) {
+				if (square.isMine) {
+					square.elt.style.backgroundImage = `url("/mine.svg")`;
+				}
+			}
 			gameOver = true;
 		} else {
 			const neighbors = this.getSquareNeighbors(x, y);
@@ -240,6 +246,11 @@ class Minefield {
 				}
 			} else {
 				square.displayNeighborCount(surroundingMines.length);
+			}
+			this.remainingNonMines -= 1;
+			if (this.remainingNonMines == 0) {
+				winFeedback();
+				gameOver = true;
 			}
 		}
 	}
@@ -252,7 +263,12 @@ function shuffleArray(a) {
 	}
 }
 
-function preloadImages() {
+let winAudio = new Audio("/win.ogg");
+function winFeedback() {
+	winAudio.play();
+}
+
+function preloadMedia() {
 	const images = [
 		"1.svg",
 		"2.svg",
@@ -268,6 +284,7 @@ function preloadImages() {
 	for (const i of images) {
 		document.createElement("img").src = i;
 	}
+	new Audio("/win.ogg");
 }
 
 function idealMineCount(area) {
@@ -286,15 +303,17 @@ function idealMineCount(area) {
 
 function main() {
 	addEventListener("dragstart", e => e.preventDefault());
-	preloadImages();
+	preloadMedia();
 
 	document.querySelectorAll(".num-input").forEach(function(i) {
 		i.addEventListener("input", function() {
 			i.value = i.value.replace(/[^0-9]/g, "");
 		});
+
 		i.addEventListener("focus", function() {
 			i.classList.remove("bad-input");
 		});
+
 		i.numValue = function() {
 			return Number(i.value);
 		};
