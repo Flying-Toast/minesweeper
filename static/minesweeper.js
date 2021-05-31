@@ -1,4 +1,5 @@
 let boardElement = document.querySelector("#board");
+let mineCountElement = document.querySelector("#remaining-mines");
 let boardWidthInput = document.querySelector("#board-width");
 let boardHeightInput = document.querySelector("#board-height");
 let numMinesInput = document.querySelector("#num-mines");
@@ -76,9 +77,11 @@ class Square {
 		}
 
 		if (this.flagged) {
+			incMineCountDisplay(1);
 			this.flagged = false;
 			this.elt.classList.remove("flagged-square");
 		} else {
+			incMineCountDisplay(-1);
 			this.flagged = true;
 			this.elt.classList.add("flagged-square");
 		}
@@ -106,6 +109,8 @@ class Minefield {
 		boardWidthInput.value = width;
 		boardHeightInput.value = height;
 		numMinesInput.value = numMines;
+		mineCountElement.innerText = numMines;
+		mineCountElement.classList.remove("count-win");
 		this.width = width;
 		this.height = height;
 		this.isFirstMove = true;
@@ -268,6 +273,22 @@ function winFeedback() {
 	winAudio.pause();
 	winAudio.currentTime = 0;
 	winAudio.play();
+	setMineCountDisplay(0);
+	mineCountElement.classList.add("count-win");
+}
+
+function incMineCountDisplay(inc) {
+	let num = Number(mineCountElement.innerText);
+	let newNum = num + inc;
+	if (newNum < 0) {
+		newNum = 0;
+	}
+	setMineCountDisplay(newNum);
+}
+
+function setMineCountDisplay(num) {
+	let width = mineCountElement.innerText.length;
+	mineCountElement.innerText = String(num).padStart(width, "0");
 }
 
 function preloadMedia() {
