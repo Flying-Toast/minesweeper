@@ -318,9 +318,7 @@ function idealMineCount(area) {
 	} else if (area == 16 * 16) {
 		return 40;
 	} else {
-		return Math.round(
-			(0.0002 * area * area) + (0.0938 * area) + 0.8937
-		);
+		return Math.round(area / 4);
 	}
 }
 
