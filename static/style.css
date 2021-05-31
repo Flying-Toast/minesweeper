@@ -1,0 +1,57 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+}
+
+.square {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-size: cover;
+}
+
+.hidden-square {
+	background-color: #BDBDBD;
+	border-top: 4px solid white;
+	border-left: 4px solid white;
+	border-right: 4px solid #7B7B7B;
+	border-bottom: 4px solid #7B7B7B;
+}
+
+.flagged-square {
+	background-image: url("/flag.svg");
+}
+
+.revealed-square {
+	background-color: #BDBDBD;
+	border: 1px solid #7B7B7B;
+}
+
+.boom-mine {
+	background-color: red;
+	background-image: url("/mine.svg");
+	border: 1px solid #7B7B7B;
+}
+
+#board {
+	line-height: 0;
+	display: inline-block;
+	white-space: nowrap;
+	border-left: 4px solid #7B7B7B;
+	border-top: 4px solid #7B7B7B;
+	border-right: 4px solid white;
+	border-bottom: 4px solid white;
+}
+
+#board-wrapper {
+	background-color: #BDBDBD;
+	border-right: 4px solid #7B7B7B;
+	border-bottom: 4px solid #7B7B7B;
+	border-left: 4px solid white;
+	border-top: 4px solid white;
+	display: inline-block;
+	padding: 10px;
+}
