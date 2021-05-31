@@ -4,6 +4,10 @@
 	touch-action: manipulation;
 }
 
+:not(input) {
+	user-select: none; -webkit-user-select: none;
+}
+
 body {
 	margin: 0px;
 	font-family: sans-serif;
@@ -156,5 +160,5 @@ hr {
 .count-win {
 	animation-name: count-win-anim;
 	animation-duration: 2s;
-	color: green;
+	color: #6CA5D7;
 }
