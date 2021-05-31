@@ -1,3 +1,5 @@
+let gameOver = false;
+
 class Square {
 	constructor(x, y, isMine) {
 		this.x = x;
@@ -15,6 +17,10 @@ class Square {
 
 	registerEltListeners() {
 		this.elt.addEventListener("click", function(e) {
+			if (gameOver) {
+				return;
+			}
+
 			if (e.ctrlKey) {
 				this.toggleFlag();
 			} else if (e.button == 0) {
@@ -28,7 +34,7 @@ class Square {
 		}.bind(this));
 
 		this.elt.addEventListener("mousedown", function(e) {
-			if (e.button != 0 || this.flagged || this.revealed || e.ctrlKey) {
+			if (e.button != 0 || gameOver || this.flagged || this.revealed || e.ctrlKey) {
 				return;
 			}
 
@@ -216,6 +222,7 @@ class Minefield {
 
 		if (square.isMine) {
 			square.elt.classList.add("boom-mine");
+			gameOver = true;
 		} else {
 			const neighbors = this.getSquareNeighbors(x, y);
 			let surroundingMines = neighbors.filter(i => i.isMine);
