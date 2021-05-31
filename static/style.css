@@ -4,6 +4,8 @@
 
 body {
 	margin: 0px;
+	font-family: sans-serif;
+	background-color: #BDBDBD;
 }
 
 .square {
@@ -54,4 +56,70 @@ body {
 	border-top: 4px solid white;
 	display: inline-block;
 	padding: 10px;
+}
+
+.button {
+	cursor: pointer;
+	background-color: #1166D0;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	padding: 7px 30px;
+}
+
+input:not([type]), input[type="text"] {
+	background-color: #E0E0E0;
+	border: 1px solid #747474;
+	border-radius: 2px;
+	padding: 6px 2px;
+}
+
+.board-input {
+	width: 3em;
+}
+
+.board-input, .small-button {
+	height: 2em;
+}
+
+#board-head {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 8px;
+}
+
+hr {
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
+	border-left: 1px solid #7B7B7B;
+	border-top: 1px solid #7B7B7B;
+}
+
+#board-head .control-row:not(:last-child) {
+	margin-bottom: 8px;
+}
+
+#new-game {
+	width: 100%;
+}
+
+.center {
+	text-align: center;
+}
+
+#left-head .control-row {
+	text-align: left;
+}
+
+.input-label {
+	width: 60px;
+	display: inline-block;
+}
+
+.small-button {
+	padding: 3px 7px;
+}
+
+.bad-input {
+	outline: 2px solid red;
 }

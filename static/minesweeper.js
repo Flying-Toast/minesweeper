@@ -1,3 +1,7 @@
+let boardElement = document.querySelector("#board");
+let boardWidthInput = document.querySelector("#board-width");
+let boardHeightInput = document.querySelector("#board-height");
+let numMinesInput = document.querySelector("#num-mines");
 let gameOver = false;
 
 class Square {
@@ -96,8 +100,12 @@ class Square {
 }
 
 class Minefield {
-	constructor(width, height, numMines, boardElement) {
+	constructor(width, height, numMines) {
+		gameOver = false;
 		boardElement.innerHTML = "";
+		boardWidthInput.value = width;
+		boardHeightInput.value = height;
+		numMinesInput.value = numMines;
 		this.width = width;
 		this.height = height;
 		this.isFirstMove = true;
@@ -262,10 +270,59 @@ function preloadImages() {
 	}
 }
 
+function idealMineCount(area) {
+	if (area == 30 * 16) {
+		return 99;
+	} else if (area == 9 * 9) {
+		return 10;
+	} else if (area == 16 * 16) {
+		return 40;
+	} else {
+		return Math.round(
+			(0.0002 * area * area) + (0.0938 * area) + 0.8937
+		);
+	}
+}
+
 function main() {
-	let boardElement = document.querySelector("#board");
 	addEventListener("dragstart", e => e.preventDefault());
 	preloadImages();
-	let field = new Minefield(30, 16, 99, boardElement);
+
+	document.querySelectorAll(".num-input").forEach(function(i) {
+		i.addEventListener("input", function() {
+			i.value = i.value.replace(/[^0-9]/g, "");
+		});
+		i.addEventListener("focus", function() {
+			i.classList.remove("bad-input");
+		});
+		i.numValue = function() {
+			return Number(i.value);
+		};
+	});
+
+	document.querySelector("#auto-mines").addEventListener("click", function() {
+		let width = boardWidthInput.numValue();
+		let height = boardHeightInput.numValue();
+		numMinesInput.value = idealMineCount(width * height);
+	});
+
+	let field = new Minefield(30, 16, 99);
+
+	document.querySelector("#new-game").addEventListener("click", function() {
+		let width = boardWidthInput.numValue();
+		let height = boardHeightInput.numValue();
+		let numMines = numMinesInput.numValue();
+		const area = width * height;
+
+		if (width == 0) {
+			boardWidthInput.classList.add("bad-input");
+		} else if (height == 0) {
+			boardHeightInput.classList.add("bad-input");
+		} else if (numMines > area) {
+			numMinesInput.classList.add("bad-input");
+		} else {
+			field = new Minefield(width, height, numMines);
+		}
+	});
 }
 main();
