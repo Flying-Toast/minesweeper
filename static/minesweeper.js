@@ -365,6 +365,7 @@ function main() {
 		let width = boardWidthInput.numValue();
 		let height = boardHeightInput.numValue();
 		numMinesInput.value = idealMineCount(width * height);
+		numMinesInput.classList.remove("bad-input");
 	});
 
 	let field = new Minefield(30, 16, 99);
