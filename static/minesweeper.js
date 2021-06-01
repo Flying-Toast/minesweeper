@@ -49,8 +49,8 @@ class Square {
 				addEventListener(i, function() {
 					clearTimeout(id);
 					this.elt.addEventListener("contextmenu", onContextMenu);
-				}, { once: true });
-			});
+				}.bind(this), { once: true });
+			}.bind(this));
 
 			id = setTimeout(function() {
 				if (!gameOver) {
