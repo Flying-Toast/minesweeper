@@ -33,9 +33,30 @@ class Square {
 			}
 		}.bind(this));
 
-		this.elt.addEventListener("contextmenu", function(e) {
+		let onContextMenu = function(e) {
 			e.preventDefault();
 			this.toggleFlag();
+		}.bind(this);
+
+		this.elt.addEventListener("contextmenu", onContextMenu);
+
+		this.elt.addEventListener("touchstart", function(e) {
+			this.elt.removeEventListener("contextmenu", onContextMenu);
+
+			let id;
+
+			["touchend", "touchmove"].forEach(function(i) {
+				addEventListener(i, function() {
+					clearTimeout(id);
+					this.elt.addEventListener("contextmenu", onContextMenu);
+				}, { once: true });
+			});
+
+			id = setTimeout(function() {
+				if (!gameOver) {
+					this.toggleFlag();
+				}
+			}.bind(this), 500);
 		}.bind(this));
 
 		this.elt.addEventListener("mousedown", function(e) {
