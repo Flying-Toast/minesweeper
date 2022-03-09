@@ -234,7 +234,7 @@ class Minefield {
 				moveTo.isMine = true;
 				mine.isMine = false;
 			} else {
-                // minefield is too dense to fully protect square
+				// minefield is too dense to fully protect square
 				break;
 			}
 		}
