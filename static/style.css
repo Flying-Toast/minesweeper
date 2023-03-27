@@ -1,0 +1,164 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+	touch-action: manipulation;
+}
+
+:not(input) {
+	user-select: none; -webkit-user-select: none;
+}
+
+body {
+	margin: 0px;
+	font-family: sans-serif;
+	background-color: #BDBDBD;
+}
+
+.square {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-size: cover;
+}
+
+.hidden-square {
+	background-color: #BDBDBD;
+	border-top: 4px solid white;
+	border-left: 4px solid white;
+	border-right: 4px solid #7B7B7B;
+	border-bottom: 4px solid #7B7B7B;
+}
+
+.flagged-square {
+	background-image: url("/flag.svg");
+}
+
+.revealed-square {
+	background-color: #BDBDBD;
+	border: 1px solid #7B7B7B;
+}
+
+.boom-mine {
+	background-color: red;
+	background-image: url("/mine.svg");
+	border: 1px solid #7B7B7B;
+}
+
+#board {
+	line-height: 0;
+	display: inline-block;
+	white-space: nowrap;
+	border-left: 4px solid #7B7B7B;
+	border-top: 4px solid #7B7B7B;
+	border-right: 4px solid white;
+	border-bottom: 4px solid white;
+}
+
+#board-wrapper {
+	background-color: #BDBDBD;
+	border-right: 4px solid #7B7B7B;
+	border-bottom: 4px solid #7B7B7B;
+	border-left: 4px solid white;
+	border-top: 4px solid white;
+	display: inline-block;
+	padding: 10px;
+	min-width: 400px;
+}
+
+.button {
+	cursor: pointer;
+	background-color: #1166D0;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	padding: 7px 30px;
+}
+
+input:not([type]), input[type="text"] {
+	background-color: #E0E0E0;
+	border: 1px solid #747474;
+	border-radius: 2px;
+	padding: 6px 2px;
+}
+
+.board-input {
+	width: 3em;
+}
+
+.board-input, .small-button {
+	height: 2em;
+}
+
+#board-head {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 8px;
+}
+
+hr {
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
+	border-left: 1px solid #7B7B7B;
+	border-top: 1px solid #7B7B7B;
+}
+
+#board-head .control-row:not(:last-child) {
+	margin-bottom: 8px;
+}
+
+#new-game {
+	width: 100%;
+}
+
+.center {
+	text-align: center;
+}
+
+#left-head .control-row {
+	text-align: left;
+}
+
+.input-label {
+	width: 60px;
+	display: inline-block;
+}
+
+.small-button {
+	padding: 3px 7px;
+}
+
+.bad-input {
+	outline: 2px solid red;
+}
+
+.big-number {
+	font-size: 60px;
+	font-weight: bold;
+	background-color: black;
+	color: red;
+	padding: 0px 4px;
+	border-bottom: 4px solid white;
+	border-right: 4px solid white;
+	border-left: 4px solid #7B7B7B;
+	border-top: 4px solid #7B7B7B;
+}
+
+.align-self-center {
+	align-self: center;
+}
+
+@keyframes count-win-anim {
+	0% {
+		background-color: white;
+	}
+
+	100% {
+		background-color: black;
+	}
+}
+
+.count-win {
+	animation-name: count-win-anim;
+	animation-duration: 2s;
+	color: #9A9A9A;
+}

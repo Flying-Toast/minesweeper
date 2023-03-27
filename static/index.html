@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Minesweeper</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/style.css">
+	</head>
+
+	<body>
+		<div class="center">
+			<div id="board-wrapper">
+				<div id="board-head">
+					<div id="left-head">
+						<div class="control-row">
+							<span class="input-label">size:</span>
+							<input type="text" id="board-width" class="board-input num-input">
+							x
+							<input type="text" id="board-height" class="board-input num-input">
+						</div>
+						<div class="control-row">
+							<span class="input-label">mines:</span>
+							<input type="text" id="num-mines" class="board-input num-input">
+							<button class="button small-button" id="auto-mines">auto</button>
+						</div>
+						<div class="control-row">
+							<button class="button" id="new-game">New Game</button>
+						</div>
+					</div>
+
+					<div class="align-self-center">
+						<div id="remaining-mines" class="big-number">...</div>
+						Remaining
+					</div>
+				</div>
+
+				<hr>
+
+				<div id="board"></div>
+			</div>
+		</div>
+
+		<script src="minesweeper.js"></script>
+	</body>
+</html>
